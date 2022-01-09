@@ -1,7 +1,7 @@
 package com.protech.machine_interface.api.controllers;
 
 import com.protech.machine_interface.api.dao.MachineDao;
-import com.protech.machine_interface.api.dao.StatusDao;
+import com.protech.machine_interface.api.dao.MachineStatusDao;
 import com.protech.machine_interface.api.dao.VL10Dao;
 import com.protech.machine_interface.api.dto.MachineDto;
 import com.protech.machine_interface.api.dto.VL10Dto;
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 @RequestMapping("api/machine")
 public class MachineController {
     private final MachineDao machineDao;
-    private final StatusDao statusDao;
+    private final MachineStatusDao machineStatusDao;
     private final VL10Dao vl10Dao;
 
 
-    public MachineController(MachineDao machineDao, StatusDao statusDao, VL10Dao vl10Dao) {
+    public MachineController(MachineDao machineDao, MachineStatusDao machineStatusDao, VL10Dao vl10Dao) {
         this.machineDao = machineDao;
-        this.statusDao = statusDao;
+        this.machineStatusDao = machineStatusDao;
         this.vl10Dao = vl10Dao;
     }
 
@@ -43,7 +43,7 @@ public class MachineController {
 
     @PostMapping(path = "/VL10")
     public VL10Dto create(@RequestBody VL10Dto dto) {
-        MachineStatus machineStatus = statusDao.getById(dto.getStatusId());
+        MachineStatus machineStatus = machineStatusDao.getById(dto.getStatusId());
         VL10 vl10 = null;
         if (dto.getId() == null) {
             vl10 = vl10Dao.save(new VL10(dto.getName(), dto.getMachineMode(), machineStatus));
@@ -63,7 +63,7 @@ public class MachineController {
     @PutMapping(path = "Machine/{id}/switch/{statusId}")
     public MachineDto changeStatus(@PathVariable Long id, @PathVariable Long statusId) {
         Machine machine = vl10Dao.findById(id).orElseThrow(IllegalArgumentException::new);
-        MachineStatus machineStatus = statusDao.getById(statusId);
+        MachineStatus machineStatus = machineStatusDao.getById(statusId);
         machine.setMachineStatus(machineStatus);
         return new MachineDto(machine);
     }

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 
-    <link th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet" >
-    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" th:rel="stylesheet" type="text/css">
+    <link href="../static/css/sb-admin-2.css" th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet">
+    <link href="../static/vendor/fontawesome-free/css/all.min.css" th:href="@{/vendor/fontawesome-free/css/all.min.css}"
+          th:rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
             rel="stylesheet">
@@ -17,10 +18,11 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center">
             <div class="sidebar-brand-icon">
                 <img class="img-profile" style="width: 100%; height: auto;"
-                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
+                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}"
+                     src="../static/images/Logo_Mines_Saint-Étienne.svg">
             </div>
             <div class="sidebar-brand-text mx-3 bg">EMSE</div>
         </a>
@@ -110,7 +112,6 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-bell fa-fw"></i>
                             <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
                         </a>
                         <!-- Dropdown - Alerts -->
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -118,39 +119,6 @@
                             <h6 class="dropdown-header">
                                 Alerts Center
                             </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
                             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                         </div>
                     </li>
@@ -163,7 +131,6 @@
 
             </nav>
             <!-- End of Topbar -->
-
 
             <div class="container-fluid">
                 <div class="row">
@@ -226,19 +193,14 @@
                             <div class="card-body">
 
                                 <div class="card mb-4">
-                                    <div class="px-3 py-3 bg-gradient-danger text-white">State : STOP</div>
+                                    <div class="px-3 py-3 text-white" id="machine_state">
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card mb-4">
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
-                            </div>
-                            <div class="card-body">
-
-                                <div class="px-3 py-3 bg-gradient-danger text-white">State : Error windows are
-                                    open
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -248,15 +210,101 @@
     </div>
 
 
-<!-- Bootstrap core JavaScript-->
-<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
-<script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+    <script th:inline="javascript">
 
-<!-- Core plugin JavaScript-->
-<script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+        function getImportance(importance) {
+            let str = '';
+            switch (importance) {
+                case 'EMERGENCY_STOP':
+                    str = 'bg-gradient-danger';
+                    break;
+                case 'IN_PRODUCTION':
+                    str = 'bg-gradient-success';
+                    break;
+                case 'PAUSED':
+                    str = 'bg-gradient-warning';
+                    break;
+                case 'PRODUCT_MANAGEMENT_ERROR':
+                    str = 'bg-gradient-info';
+                    break;
+            }
+            return str;
+        }
 
-<!-- Custom scripts for all pages-->
-<script th:src="@{/js/sb-admin-2.min.js}"></script>
+        let machineId = /*[[${id}]]*/ -10000;
+        let machine;
+        let machineStatus;
+        /*<![CDATA[*/
+        setInterval(function () {
+            let httpRequest;
+            let httpRequest2;
+
+            httpRequest = new XMLHttpRequest();
+            httpRequest2 = new XMLHttpRequest();
+
+            function secondRequest(machine) {
+                httpRequest2.onload = function () {
+                    if (httpRequest2.status === 200) {
+                        machineStatus = JSON.parse(httpRequest2.responseText);
+                        let machineHTML = document.getElementById("machine_state");
+                        machineHTML.setAttribute("class", "px-3 py-3 text-white " + getImportance(machineStatus.importance));
+                        machineHTML.innerHTML = machineStatus.name;
+                    } else {
+                        alert('Il y a eu un problème avec la requête.');
+                    }
+                }
+                httpRequest2.open('GET', '/api/machineStatus/' + machine.statusId);
+                httpRequest2.send();
+            };
+
+            function firstRequest() {
+                if (!httpRequest) {
+                    alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+                    return false;
+                }
+                httpRequest.onload = function () {
+                    if (httpRequest.status === 200) {
+                        machine = JSON.parse(httpRequest.responseText);
+                        secondRequest(machine);
+                    } else {
+                        alert('Il y a eu un problème avec la requête.');
+                    }
+                }
+                httpRequest.open('GET', '/api/machine/' + machineId);
+                httpRequest.send();
+            }
+            firstRequest(secondRequest);
+        }, 2000);
+        /*]]>*/
+        let delay = function (elem, callback) {
+            let timeout = null;
+            elem.onmouseover = function() {
+                // Set timeout to be a timer which will invoke callback after 1s
+                timeout = setTimeout(callback, 1000);
+            };
+
+            elem.onmouseout = function() {
+                // Clear any timers set to timeout
+                clearTimeout(timeout);
+            }
+        };
+
+
+        delay(document.getElementById('machine_state'), function() {
+            document.getElementById("machine_state").setAttribute("title", machineStatus.description);
+        });
+    </script>
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}" src="../static/vendor/jquery/jquery.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+            src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"
+            src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
 </div>
 </body>
 </html>
