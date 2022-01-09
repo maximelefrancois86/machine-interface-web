@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
+    <title>Mode Manuel</title>
+
+    <link th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet" >
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" th:rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+</head>
+<body>
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon">
+                <img class="img-profile" style="width: 100%; height: auto;"
+                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
+            </div>
+            <div class="sidebar-brand-text mx-3 bg">EMSE</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Storage Lift
+        </div>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Alertes -->
+        <!-- Header -->
+        <a class="d-flex align-items-center flex-shrink-0 bg-gradient-primary p-3 text-decoration-none border-bottom">
+            <span class="text-white fw-semibold">Alertes</span>
+        </a>
+        <!-- Body-->
+        <div class ="list-group list-group-flush border-bottom">
+            <a class="list-group-item list-group-item-action bg-danger text-white py-3 lh-tight" href = "storageLiftInterface">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class = "mb-1">Arrêt d'urgence: Magasin Vertical</strong>
+                </div>
+                <div class="col-10 mb-1 small">
+                    Un arrêt d'urgence a été enclenché au niveau du Magasin Vertical veuillez verrifier.
+                </div>
+            </a>
+
+            <a class="list-group-item list-group-item-action active py-3 lh-tight" href = "storageLiftInterface">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class = "mb-1">Magasin vertical en pause</strong>
+                </div>
+                <div class="col-10 mb-1 small">
+                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
+                </div>
+            </a>
+
+            <a class="list-group-item list-group-item-action bg-success text-white py-3 lh-tight" href = "storageLiftInterface">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                    <strong class = "mb-1">Magasin vertical en pause</strong>
+                </div>
+                <div class="col-10 mb-1 small">
+                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
+                </div>
+            </a>
+
+        </div>
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+
+    <!-- End of Sidebar -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <nav class="center">
+                    <div class="input-group mb-3">
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col align-self-start">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col order-first">
+                                    <h4 class="m-0 font-weight-bold text-primary">Test du Convoyeur</h4>
+                                </div>
+                                <div class="col order-last">
+                                    <a class="btn btn-primary btn-block text-left btn-lg ">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>Marche/Arrêt</span>
+                                    </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6 order-last" >
+                                    <div class="card mb-4">
+                                        <div class="px-3 py-3 text-muted">
+                                            <h6 class=" text-muted">Vitesse actuelle</h6>
+                                            <h6 class=" text-muted">Nouvelle vitesse</h6>
+                                            <a class="btn btn-secondary btn-block text-left btn-lg ">
+                                                <span class="icon text-white-50 bs-popover-left mr-auto">
+                                                    <i class="fas fa-play "></i>
+                                                <span>Valider</span>
+                                                 </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div> <!--est ce que ce serait une bonne idée de mettre des images ? genre les mêmes images que sur l'interface pour chaque test-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col align-self-start">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col order-first">
+                                    <h4 class="m-0 font-weight-bold text-primary">Test de la ventouse</h4>
+                                </div>
+                                <div class="col order-last">
+                                    <a class="btn btn-primary btn-block text-left btn-lg ">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>Activer</span>
+                                    </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col align-self-start">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                            <div class="row">
+                                <div class="col order-first">
+                                    <h4 class="m-0 font-weight-bold text-primary">Test du vérin</h4>
+                                </div>
+                                <div class="col order-last">
+                                    <a class="btn btn-primary btn-block text-left btn-lg ">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>Activer</span>
+                                    </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
