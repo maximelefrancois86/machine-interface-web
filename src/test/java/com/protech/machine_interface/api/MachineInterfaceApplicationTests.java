@@ -1,10 +1,10 @@
-package com.protech.storage_lift_interface;
+package com.protech.machine_interface.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class StorageLiftInterfaceApplicationTests {
+class MachineInterfaceApplicationTests {
 
 	@Test
 	void contextLoads() {

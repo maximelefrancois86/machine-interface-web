@@ -1,14 +1,14 @@
-package com.protech.storage_lift_interface.api;
+package com.protech.machine_interface.api.controllers;
 
-import com.protech.storage_lift_interface.dao.MachineDao;
-import com.protech.storage_lift_interface.dao.StatusDao;
-import com.protech.storage_lift_interface.dao.VL10Dao;
-import com.protech.storage_lift_interface.dto.MachineDto;
-import com.protech.storage_lift_interface.dto.VL10Dto;
-import com.protech.storage_lift_interface.models.Machine;
-import com.protech.storage_lift_interface.models.MachineMode;
-import com.protech.storage_lift_interface.models.MachineStatus;
-import com.protech.storage_lift_interface.models.VL10;
+import com.protech.machine_interface.api.dao.MachineDao;
+import com.protech.machine_interface.api.dao.StatusDao;
+import com.protech.machine_interface.api.dao.VL10Dao;
+import com.protech.machine_interface.api.dto.MachineDto;
+import com.protech.machine_interface.api.dto.VL10Dto;
+import com.protech.machine_interface.api.models.Machine;
+import com.protech.machine_interface.api.models.MachineMode;
+import com.protech.machine_interface.api.models.MachineStatus;
+import com.protech.machine_interface.api.models.VL10;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 

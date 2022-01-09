@@ -1,7 +1,7 @@
-package com.protech.storage_lift_interface.dto;
+package com.protech.machine_interface.api.dto;
 
-import com.protech.storage_lift_interface.models.MachineMode;
-import com.protech.storage_lift_interface.models.Machine;
+import com.protech.machine_interface.api.models.MachineMode;
+import com.protech.machine_interface.api.models.Machine;
 
 public class MachineDto {
     private java.lang.Long id;

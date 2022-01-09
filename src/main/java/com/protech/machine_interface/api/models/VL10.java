@@ -1,4 +1,4 @@
-package com.protech.storage_lift_interface.models;
+package com.protech.machine_interface.api.models;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
