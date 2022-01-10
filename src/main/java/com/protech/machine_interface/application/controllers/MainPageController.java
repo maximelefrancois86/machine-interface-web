@@ -10,4 +10,8 @@ public class MainPageController {
     public String MainPageController(){
         return "MainPage";
     }
+    @GetMapping("/")
+    public String OtherMainPageController(){
+        return "MainPage";
+    }
 }
