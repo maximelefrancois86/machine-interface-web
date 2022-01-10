@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home" >
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
             <div class="sidebar-brand-icon">
                 <img class="img-profile" style="width: 100%; height: auto;"
                      th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
@@ -30,42 +30,12 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Storage Lift
-        </div>
-
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Entries</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Menu Principal</span></a>
         </li>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Data</span></a>
-        </li>
-
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
 
 
         <!-- Divider -->
@@ -76,8 +46,8 @@
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
-    </ul>
 
+    </ul>
     <!-- End of Sidebar -->
 
     <div class="container-fluid">
@@ -95,9 +65,6 @@
                     <div class="input-group mb-3">
                         <select class="custom-select" id="inputGroupSelect02">
                             <option selected>Choisir la machine</option>
-                            <option value="1">Machine 1</option>
-                            <option value="2">Machine 2</option>
-                            <option value="3">Machine 3</option>
                         </select>
                         <button type="button" class="btn btn-secondary">
                             <i class="fas fa-search"></i>
@@ -137,7 +104,7 @@
                                     <div class="card mb-4">
                                         <div class="px-3 py-3 text-muted">
                                             <h4 class=" text-muted">Etat</h4>
-                                            <h6 class="px-3 py-3 bg-secondary text-white machine-state">En marche</h6>
+                                            <h6 class="px-3 py-3 text-white machine-state"></h6>
                                         </div>
                                     </div>
 
@@ -196,6 +163,7 @@
                     machineName[0].innerText = machine.name;
                     let machineState = machineCardsList[index].getElementsByClassName("machine-state");
                     machineState[0].innerText = machineStatus.name;
+                    machineState[0].setAttribute("class", "px-3 py-3 text-white " + getImportance(machineStatus.importance));
                     let machineLink = machineCardsList[index].getElementsByClassName("link-to-machine");
                     machineLink[0].setAttribute("href","machine/" + machine.id);
                     disp.innerHTML += machineCardsList[index].innerHTML;
@@ -207,7 +175,36 @@
             httpRequest2.open('GET', '/api/machineStatus/' + machine.statusId);
             httpRequest2.send();
         };
+        function getImportance(importance) {
+            let str = '';
+            switch (importance) {
+                case 'EMERGENCY_STOP':
+                    str = 'bg-gradient-danger';
+                    break;
+                case 'IN_PRODUCTION':
+                    str = 'bg-gradient-success';
+                    break;
+                case 'PAUSED':
+                    str = 'bg-gradient-warning';
+                    break;
+                case 'PRODUCT_MANAGEMENT_ERROR':
+                    str = 'bg-gradient-info';
+                    break;
+            }
+            return str;
+        }
     </script>
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}" src="../static/vendor/jquery/jquery.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+            src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"
+            src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
 </div>
 </body>
 </html>

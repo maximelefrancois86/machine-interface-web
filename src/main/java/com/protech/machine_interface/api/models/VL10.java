@@ -17,6 +17,5 @@ public class VL10 extends Machine
     }
 
     public VL10() {
-
     }
 }

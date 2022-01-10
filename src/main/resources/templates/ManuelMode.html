@@ -29,15 +29,38 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Menu Principal</span></a>
+        </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Storage Lift
+        <div class="sidebar-heading" id = "heading-machine">
+
         </div>
+
+        <!-- Nav Item - Tables -->
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}(id=${id})}">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>Interface</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/settings(id=${id})}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Settings</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/manuel(id=${id})}">
+                <i class="fas fa-fw fa-hand-paper"></i>
+                <span>ManualMode</span></a>
+        </li>
+
 
         <!-- Divider -->
         <hr class="sidebar-divider">
@@ -46,50 +69,15 @@
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
 
-        <!-- Alertes -->
-        <!-- Header -->
-        <a class="d-flex align-items-center flex-shrink-0 bg-gradient-primary p-3 text-decoration-none border-bottom">
-            <span class="text-white fw-semibold">Alertes</span>
-        </a>
-        <!-- Body-->
-        <div class ="list-group list-group-flush border-bottom">
-            <a class="list-group-item list-group-item-action bg-danger text-white py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Arrêt d'urgence: Magasin Vertical</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Un arrêt d'urgence a été enclenché au niveau du Magasin Vertical veuillez verrifier.
-                </div>
-            </a>
-
-            <a class="list-group-item list-group-item-action active py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Magasin vertical en pause</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
-                </div>
-            </a>
-
-            <a class="list-group-item list-group-item-action bg-success text-white py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Magasin vertical en pause</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
-                </div>
-            </a>
-
-        </div>
-
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
         </div>
 
-    </ul>
 
+    </ul>
     <!-- End of Sidebar -->
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -187,6 +175,17 @@
             </div>
         </div>
     </div>
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}" src="../static/vendor/jquery/jquery.min.js"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"
+            src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"
+            src="../static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
 </div>
 </body>
 </html>

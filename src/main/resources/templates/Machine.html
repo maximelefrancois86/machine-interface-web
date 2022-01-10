@@ -21,8 +21,7 @@
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
             <div class="sidebar-brand-icon">
                 <img class="img-profile" style="width: 100%; height: auto;"
-                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}"
-                     src="../static/images/Logo_Mines_Saint-Étienne.svg">
+                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
             </div>
             <div class="sidebar-brand-text mx-3 bg">EMSE</div>
         </a>
@@ -32,40 +31,35 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="/home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Main Menu</span></a>
+                <span>Menu Principal</span></a>
         </li>
 
         <!-- Divider -->
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Storage Lift
+        <div class="sidebar-heading" id = "heading-machine">
+
         </div>
 
-        <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
-                <i class="fas fa-fw fa-cog"></i>
-                <span>Entries</span>
-            </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Components:</h6>
-                    <a class="collapse-item" href="buttons.html">Buttons</a>
-                    <a class="collapse-item" href="cards.html">Cards</a>
-                </div>
-            </div>
-        </li>
-
         <!-- Nav Item - Tables -->
+
         <li class="nav-item">
-            <a class="nav-link" href="tables.html">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Data</span></a>
+            <a class="nav-link" th:href="@{/machine/{id}(id=${id})}">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>Interface</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/settings(id=${id})}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Settings</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/manuel(id=${id})}">
+                <i class="fas fa-fw fa-hand-paper"></i>
+                <span>ManualMode</span></a>
         </li>
 
 
@@ -230,70 +224,52 @@
             }
             return str;
         }
+        function secondRequest(machine) {
+            httpRequest2.onload = function () {
+                if (httpRequest2.status === 200) {
+                    machineStatus = JSON.parse(httpRequest2.responseText);
+                    let machineHTML = document.getElementById("machine_state");
+                    machineHTML.setAttribute("class", "px-3 py-3 text-white " + getImportance(machineStatus.importance));
+                    machineHTML.innerHTML = machineStatus.name;
+                    document.getElementById("heading-machine").innerText = machine.name;
+                    document.getElementById("machine_state").setAttribute("title", machineStatus.description);
+                } else {
+                    alert('Il y a eu un problème avec la requête.');
+                }
+            }
+            httpRequest2.open('GET', '/api/machineStatus/' + machine.statusId);
+            httpRequest2.send();
+        };
 
+        function firstRequest() {
+            if (!httpRequest) {
+                alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+                return false;
+            }
+            httpRequest.onload = function () {
+                if (httpRequest.status === 200) {
+                    machine = JSON.parse(httpRequest.responseText);
+                    secondRequest(machine);
+                } else {
+                    alert('Il y a eu un problème avec la requête.');
+                }
+            }
+            httpRequest.open('GET', '/api/machine/' + machineId);
+            httpRequest.send();
+        }
+        let httpRequest;
+        let httpRequest2;
+        httpRequest = new XMLHttpRequest();
+        httpRequest2 = new XMLHttpRequest();
         let machineId = /*[[${id}]]*/ -10000;
         let machine;
         let machineStatus;
+        firstRequest();
         /*<![CDATA[*/
         setInterval(function () {
-            let httpRequest;
-            let httpRequest2;
-
-            httpRequest = new XMLHttpRequest();
-            httpRequest2 = new XMLHttpRequest();
-
-            function secondRequest(machine) {
-                httpRequest2.onload = function () {
-                    if (httpRequest2.status === 200) {
-                        machineStatus = JSON.parse(httpRequest2.responseText);
-                        let machineHTML = document.getElementById("machine_state");
-                        machineHTML.setAttribute("class", "px-3 py-3 text-white " + getImportance(machineStatus.importance));
-                        machineHTML.innerHTML = machineStatus.name;
-                    } else {
-                        alert('Il y a eu un problème avec la requête.');
-                    }
-                }
-                httpRequest2.open('GET', '/api/machineStatus/' + machine.statusId);
-                httpRequest2.send();
-            };
-
-            function firstRequest() {
-                if (!httpRequest) {
-                    alert('Abandon :( Impossible de créer une instance de XMLHTTP');
-                    return false;
-                }
-                httpRequest.onload = function () {
-                    if (httpRequest.status === 200) {
-                        machine = JSON.parse(httpRequest.responseText);
-                        secondRequest(machine);
-                    } else {
-                        alert('Il y a eu un problème avec la requête.');
-                    }
-                }
-                httpRequest.open('GET', '/api/machine/' + machineId);
-                httpRequest.send();
-            }
             firstRequest();
-
         }, 2000);
         /*]]>*/
-        let delay = function (elem, callback) {
-            let timeout = null;
-            elem.onmouseover = function() {
-                // Set timeout to be a timer which will invoke callback after 1s
-                timeout = setTimeout(callback, 1000);
-            };
-
-            elem.onmouseout = function() {
-                // Clear any timers set to timeout
-                clearTimeout(timeout);
-            }
-        };
-
-
-        delay(document.getElementById('machine_state'), function() {
-            document.getElementById("machine_state").setAttribute("title", machineStatus.description);
-        });
     </script>
     <!-- Bootstrap core JavaScript-->
     <script th:src="@{/vendor/jquery/jquery.min.js}" src="../static/vendor/jquery/jquery.min.js"></script>

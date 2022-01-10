@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet">
+    <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" th:rel="stylesheet" type="text/css">
+    <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+</head>
+<body id="page-top">
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+            <div class="sidebar-brand-icon">
+                <img class="img-profile" style="width: 100%; height: auto;"
+                     th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
+            </div>
+            <div class="sidebar-brand-text mx-3 bg">EMSE</div>
+        </a>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/home">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Menu Principal</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading" id="heading-machine">
+
+        </div>
+
+        <!-- Nav Item - Tables -->
+
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}(id=${id})}">
+                <i class="fas fa-fw fa-address-card"></i>
+                <span>Interface</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/settings(id=${id})}">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Settings</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" th:href="@{/machine/{id}/manuel(id=${id})}">
+                <i class="fas fa-fw fa-hand-paper"></i>
+                <span>ManualMode</span></a>
+        </li>
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+
+    </ul>
+    <!-- End of Sidebar -->
+
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <nav class="navbar navbar-light">
+                    <span class="navbar-brand mb-0 h1">Storage Lift - Réglages</span>
+                </nav>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-danger badge-counter">3+</span>
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="alertsDropdown">
+                            <h6 class="dropdown-header">
+                                Alerts Center
+                            </h6>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-primary">
+                                        <i class="fas fa-file-alt text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 12, 2019</div>
+                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-success">
+                                        <i class="fas fa-donate text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 7, 2019</div>
+                                    $290.29 has been deposited into your account!
+                                </div>
+                            </a>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="mr-3">
+                                    <div class="icon-circle bg-warning">
+                                        <i class="fas fa-exclamation-triangle text-white"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="small text-gray-500">December 2, 2019</div>
+                                    Spending Alert: We've noticed unusually high spending for your account.
+                                </div>
+                            </a>
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                        </div>
+                    </li>
+
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- main -->
+            <!-- <h6 class="m-0 font-weight-bold text-primary bs-popover-left">Informations</h6> -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Vitesses</h6>
+                </div>
+                <div class="card-body">
+                    <p>Vitesse du convoyeur</p>
+                    <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="200"
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <p>cm/s</p>
+                        </div>
+                    </form>
+
+                    <p>Vitesse du portique</p>
+                    <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="200"
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <p>cm/s</p>
+                        </div>
+                    </form>
+
+                    <div class="px-3 py-3 text-muted"></div>
+
+                    <div class="col order-last">
+                        <a href="#" class="btn btn-primary btn-blockAp text-left btn-lg ">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>APPLIQUER</span>
+                                    </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Temps</h6>
+                </div>
+                <div class="card-body">
+                    <div class="my-2"></div>
+                    <p>Temps de production</p>
+                    <div class="col order-last">
+                        <h6 class="px-3 py-3 bg-secondary text-white">120 s</h6>
+                    </div>
+
+                    <p>Temps d'arrêt</p>
+                    <div class="col order-last">
+                        <h6 class="px-3 py-3 bg-secondary text-white">300 s</h6>
+                    </div>
+
+                    <p>RAZ Compteurs de temps</p>
+                    <div class="col order-last">
+                        <a href="#" class="btn container btn-RAZ btn-blockRAZ text-left btn-lg">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play"></i>
+                                        <span>RAZ</span>
+                                    </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Données relatives à la production</h6>
+                </div>
+                <div class="card-body">
+                    <p>Nombre de pots produits</p>
+                    <div class="col order-last">
+                        <h6 class="px-3 py-3 bg-secondary text-white">80 pots</h6>
+                    </div>
+
+                    <p>Nombre de pots à produire</p>
+                    <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="100"
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <p>pots</p>
+                        </div>
+                    </form>
+
+                    <p>Cadence</p>
+                    <form
+                            class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="1.5"
+                                   aria-label="Search" aria-describedby="basic-addon2">
+                            <p>Hz</p>
+                        </div>
+                    </form>
+
+                    <div class="px-3 py-3 text-muted"></div>
+
+                    <div class="col order-last">
+                        <a href="#" class="btn btn-primary btn-blockAp text-left btn-lg ">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>APPLIQUER</span>
+                                    </span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="container-fluid">
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Données relatives à la machine</h6>
+                </div>
+                <div class="card-body">
+                    <div class="col order-first">
+                        <p>État</p>
+                        <div class="col order-last">
+                            <h6 id="text2" class="px-3 py-3 bg-secondary text-white">En fonctionnement</h6>
+                        </div>
+
+                        <p>Portes magasin vertical</p>
+                        <div class="col order-last">
+                            <h6 id="text" class="px-3 py-3 bg-secondary text-white">Portes vérouillées</h6>
+                            <a class="btn btn-primary btn-blockOp text-left btn-lg" onclick="changer2();">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>DEMANDER L'OUVERTURE</span>
+                                    </span>
+                            </a>
+                            <a class="btn btn-primary btn-blockOp text-left btn-lg" onclick="changer();">
+                                    <span class="icon text-white-50 bs-popover-left mr-auto">
+                                        <i class="fas fa-play "></i>
+                                        <span>VEROUILLER LES PORTES</span>
+                                    </span>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container-fluid">
+            </div>
+
+            <div class="card shadow mb-4 d-flex flex-column">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Capteurs (Entrées)</h6>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="col-lg-6">
+                        <p>M0D0</p>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I0.0</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I0.1</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I0.2</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I0.3</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I0.4</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I0.5</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I0.6</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I0.7</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I1.0</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I1.1</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I1.2</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I1.3</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I1.4</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOn text-white">I1.5</h6>
+                    </div>
+
+                    <div class="px-3 py-3 text-muted"></div>
+
+                    <div class="col-lg-6">
+                        <p>M0D1</p>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.0</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.1</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.2</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.3</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.4</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.5</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.6</h6>
+                        <h6 class="icon-circle bg-secondaryCapteurOff text-white">I2.7</h6>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="container-fluid">
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Capteurs (Sorties)</h6>
+                </div>
+
+                <div class="card-body">
+                    <div class="col-lg-6">
+
+                        <div class="col-lg-6">
+                            <p>M0D0</p>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.0</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.1</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.2</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.3</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.4</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.5</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.6</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q0.7</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOn text-white">Q1.0</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q1.1</h6>
+                        </div>
+
+                        <p>M0D1</p>
+                        <div class="col-lg-6">
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.0</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.1</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.2</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.3</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.4</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.5</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.6</h6>
+                            <h6 class="icon-circle bg-secondaryCapteurOff text-white">Q2.7</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+    <script th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script th:src="@{/js/sb-admin-2.min.js}"></script>
+
+    <script>
+        function changer() {
+            document.getElementById('text').innerHTML = 'Portes Vérouillées';
+        }
+
+        function changer2() {
+            document.getElementById('text').innerHTML = 'Portes Dévérouillées';
+            document.getElementById('text2').innerHTML = 'Arrêt d\'urgence (réinitialiser)';
+        }
+    </script>
+
+
+</div>
+</body>
+</html>
