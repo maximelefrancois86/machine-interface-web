@@ -71,7 +71,7 @@ Page offrant un contrôle manuel d'une machine.
 ### III.5 Vue des variables
 Page listant l'état des variables relatives à une machine.
 
-# Auteurs :
+#### Auteurs :
 Perinne Chevalier
 Aurélien JEANNEAU
 Nicolas Dunou
