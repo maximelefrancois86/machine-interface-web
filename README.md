@@ -5,20 +5,43 @@ Ce programme est un outil de démonstration pour une interface web permettant la
 
 Pour démarrer le programme
 
-    ./gradlew run
+    ./gradlew Bootrun
 
 Pour accèder à la page principale
 
-    https://[host]:[port]/home
+    http://[host]:[port]/home
 
 Pour intérragir avec l'API :
 
-    https://[host]:[port]/swagger-ui/index.html
+    http://[host]:[port]/swagger-ui/index.html
+
+Pour ajouter une machine VL10 : le fichier Json doit avoir cette forme : 
+
+    {
+        "name": "nom de la machine",
+        "machineMode": "MANUAL",
+        "statusId": 3
+    } 
+    
+Sans id, car celui-ci se génère automatiquement et avec un statusId entre 1 et 12
+
+
 
 Pour accèder à la base de donnée :
 
-    https://[host]:[port]/console
+    http://[host]:[port]/console
 
+avec l'identifiant sa et sans mot de passe. Celui-ci peut être modfier dans le fichier application.properties.
+
+Par défaut : [host]=localhost et [port]=8080.
+
+Pour accèder aux machines dans la base de donnée :
+
+    http://[host]:[port]/api/machine
+
+Pour accèder aux états de machines dans la base de donnée :
+
+    http://[host]:[port]/api/machineStatus
 
 ## II. Les différentes vues
 L'application se divise en différentes vues: 
@@ -47,3 +70,9 @@ Page offrant un contrôle manuel d'une machine.
 
 ### III.5 Vue des variables
 Page listant l'état des variables relatives à une machine.
+
+# Auteurs :
+Perinne Chevalier
+Aurélien JEANNEAU
+Nicolas Dunou
+Emma Crémon
