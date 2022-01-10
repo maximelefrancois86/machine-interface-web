@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
             <div class="sidebar-brand-icon">
                 <img class="img-profile" style="width: 100%; height: auto;"
                      th:src="@{/images/Logo_Mines_Saint-Étienne.svg}"
@@ -167,7 +167,7 @@
                                     </a>
 
                                     <div class="my-2"></div>
-                                    <a href="#" class="btn btn-info btn-block text-left btn-lg">
+                                    <a th:href="@{{id}/manuel(id=${id})}" class="btn btn-info btn-block text-left btn-lg">
                                         <span class="icon text-white-50 bs-popover-left">
                                             <i class="fas fa-info-circle"></i>
                                         </span>
@@ -273,7 +273,8 @@
                 httpRequest.open('GET', '/api/machine/' + machineId);
                 httpRequest.send();
             }
-            firstRequest(secondRequest);
+            firstRequest();
+
         }, 2000);
         /*]]>*/
         let delay = function (elem, callback) {

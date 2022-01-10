@@ -4,7 +4,7 @@
     <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
     <title>Menu Principal</title>
 
-    <link th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet" >
+    <link th:href="@{/css/sb-admin-2.css}" th:rel="stylesheet">
     <link th:href="@{/vendor/fontawesome-free/css/all.min.css}" th:rel="stylesheet" type="text/css">
     <link
             href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -18,7 +18,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home" >
             <div class="sidebar-brand-icon">
                 <img class="img-profile" style="width: 100%; height: auto;"
                      th:src="@{/images/Logo_Mines_Saint-Étienne.svg}">
@@ -40,48 +40,36 @@
             Storage Lift
         </div>
 
+        <!-- Nav Item - Pages Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+               aria-expanded="true" aria-controls="collapseTwo">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>Entries</span>
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Custom Components:</h6>
+                    <a class="collapse-item" href="buttons.html">Buttons</a>
+                    <a class="collapse-item" href="cards.html">Cards</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Tables -->
+        <li class="nav-item">
+            <a class="nav-link" href="tables.html">
+                <i class="fas fa-fw fa-table"></i>
+                <span>Data</span></a>
+        </li>
+
+
         <!-- Divider -->
         <hr class="sidebar-divider">
 
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Alertes -->
-        <!-- Header -->
-        <a class="d-flex align-items-center flex-shrink-0 bg-gradient-primary p-3 text-decoration-none border-bottom">
-            <span class="text-white fw-semibold">Alertes</span>
-        </a>
-        <!-- Body-->
-        <div class ="list-group list-group-flush border-bottom">
-            <a class="list-group-item list-group-item-action bg-danger text-white py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Arrêt d'urgence: Magasin Vertical</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Un arrêt d'urgence a été enclenché au niveau du Magasin Vertical veuillez verrifier.
-                </div>
-            </a>
-
-            <a class="list-group-item list-group-item-action active py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Magasin vertical en pause</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
-                </div>
-            </a>
-
-            <a class="list-group-item list-group-item-action bg-success text-white py-3 lh-tight" href = "storageLiftInterface">
-                <div class="d-flex w-100 align-items-center justify-content-between">
-                    <strong class = "mb-1">Magasin vertical en pause</strong>
-                </div>
-                <div class="col-10 mb-1 small">
-                    Accumulation en aval du magasin vertical. Magasin vertical en pause.
-                </div>
-            </a>
-
-        </div>
 
         <!-- Sidebar Toggler (Sidebar) -->
         <div class="text-center d-none d-md-inline">
@@ -117,111 +105,24 @@
                     </div>
                 </nav>
             </div>
-            </div>
-    <div class="row">
-    <div class="container-fluid">
-        <div class="col align-self-start">
-            <div class="card mb-4">
-                <div class="card-header py-3">
-                    <div class="row">
-                        <div class="col order-first">
-                            <h4 class="m-0 font-weight-bold text-primary">Machine 1</h4>
-                        </div>
-                        <div class="col order-last">
-                            <a href="storageLiftInterface" class="btn btn-primary btn-block text-left btn-lg ">
-                                    <span class="icon text-white-50 bs-popover-left mr-auto">
-                                        <i class="fas fa-play "></i>
-                                        <span>Consulter</span>
-                                    </span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6" >
-                            <div class="card mb-4">
-                                <div class="px-3 py-3 text-muted">
-                                    <h4 class=" text-muted">Etat</h4>
-                                    <h6 class="px-3 py-3 bg-secondary text-white">En marche</h6>
-                                </div>
-                            </div>
+        </div>
 
+        <div id="disp">
 
-                            <div class="card mb-4">
-                                <div class="px-3 py-3 text-muted">
-                                    <h4 class=" text-muted">Informations</h4>
-                                    <h6 class="px-3 py-3 bg-secondary text-white">infos à récupérer</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col order-last">
-                        <img class="img-profile min-vh-50" style="width: 100%; height: auto;"
-                             th:src="@{/images/Capture d’écran 2021-12-13 220725.jpg}">
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    </div>
-    <div class="row">
-    <div class="container-fluid">
-            <div class="col align-self-start">
-                <div class="card mb-4">
-                    <div class="card-header py-3">
-                        <div class="row">
-                            <div class="col order-first">
-                                <h4 class="m-0 font-weight-bold text-primary">Machine 2</h4>
-                            </div>
-                            <div class="col order-last">
-                                <a href="storageLiftInterface" class="btn btn-primary btn-block text-left btn-lg ">
-                                    <span class="icon text-white-50 bs-popover-left mr-auto">
-                                        <i class="fas fa-play "></i>
-                                        <span>Consulter</span>
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-6" >
-                                <div class="card mb-4">
-                                    <div class="px-3 py-3 text-muted">
-                                        <h4 class=" text-muted">Etat</h4>
-                                        <h6 class="px-3 py-3 bg-secondary text-white">En marche</h6>
-                                    </div>
-                                </div>
-
-                                <div class="card mb-4">
-                                    <div class="px-3 py-3 text-muted">
-                                        <h4 class=" text-muted">Informations</h4>
-                                        <h6 class="px-3 py-3 bg-secondary text-white">infos à récupérer</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col order-last">
-                                <img class="img-profile min-vh-50" style="width: 100%; height: auto;"
-                                     th:src="@{/images/Capture d’écran 2021-12-13 220805.jpg}">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
-    </div>
-    <div class="row">
-    <div class="container-fluid">
+    <div style="display: none">
+        <div class="row" id="machineCard">
+            <div class="container-fluid">
                 <div class="col align-self-start">
                     <div class="card mb-4">
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col order-first">
-                                    <h4 class="m-0 font-weight-bold text-primary">Machine 3</h4>
+                                    <h4 class="m-0 font-weight-bold text-primary machine-name">Machine 1</h4>
                                 </div>
                                 <div class="col order-last">
-                                    <a href="storageLiftInterface" class="btn btn-primary btn-block text-left btn-lg ">
+                                    <a href="Machine"  class="btn btn-primary btn-block text-left btn-lg link-to-machine">
                                     <span class="icon text-white-50 bs-popover-left mr-auto">
                                         <i class="fas fa-play "></i>
                                         <span>Consulter</span>
@@ -232,32 +133,81 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6" >
+                                <div class="col-lg-6">
                                     <div class="card mb-4">
                                         <div class="px-3 py-3 text-muted">
                                             <h4 class=" text-muted">Etat</h4>
-                                            <h6 class="px-3 py-3 bg-secondary text-white">En marche</h6>
+                                            <h6 class="px-3 py-3 bg-secondary text-white machine-state">En marche</h6>
                                         </div>
                                     </div>
+
+
                                     <div class="card mb-4">
                                         <div class="px-3 py-3 text-muted">
                                             <h4 class=" text-muted">Informations</h4>
-                                            <h6 class="px-3 py-3 bg-secondary text-white">infos à récupérer</h6>
+                                            <h6 class="px-2 py-2">infos à récupérer</h6>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col order-last">
-                                    <img class="img-profile min-vh-50" style="width: 100%; height: auto;"
-                                         th:src="@{/images/Capture d’écran 2021-12-13 220845.jpg}">
+                                    <img class="img-profile min-vh-50" style="height: 200px; width: auto;"
+                                         th:src="@{/images/VL10.jpg}">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-    </div>
+            </div>
         </div>
-    </div>
-</div>
 
+    </div>
+
+    <script>
+        let machineCard = document.getElementById("machineCard");
+        let machineCardsList = []
+        disp = document.getElementById("disp")
+        let httpRequest = new XMLHttpRequest();
+        let httpRequest2 = new XMLHttpRequest();
+        if (!httpRequest) {
+            alert('Abandon :( Impossible de créer une instance de XMLHTTP');
+        } else {
+            httpRequest.onload = function () {
+                if (httpRequest.status === 200) {
+                    let data = JSON.parse(httpRequest.responseText);
+                    data.forEach(displayMachineCard);
+                } else {
+                    alert('Il y a eu un problème avec la requête.');
+                }
+            }
+            httpRequest.open('GET', 'api/machine');
+            httpRequest.send();
+
+        }
+        function displayMachineCard(machine, index){
+            secondRequest(machine, index);
+        }
+        function secondRequest(machine, index) {
+            httpRequest2.onload = function () {
+                if (httpRequest2.status === 200) {
+                    machineStatus = JSON.parse(httpRequest2.responseText);
+                    disp.innerHTML += "<div id=\"machine_" + index + "\">"
+                    machineCardsList.push(machineCard);
+                    let machineName = machineCardsList[index].getElementsByClassName("machine-name");
+                    machineName[0].innerText = machine.name;
+                    let machineState = machineCardsList[index].getElementsByClassName("machine-state");
+                    machineState[0].innerText = machineStatus.name;
+                    let machineLink = machineCardsList[index].getElementsByClassName("link-to-machine");
+                    machineLink[0].setAttribute("href","machine/" + machine.id);
+                    disp.innerHTML += machineCardsList[index].innerHTML;
+                    disp.innerHTML += "</div>";
+                } else {
+                    alert('Il y a eu un problème avec la requête.');
+                }
+            }
+            httpRequest2.open('GET', '/api/machineStatus/' + machine.statusId);
+            httpRequest2.send();
+        };
+    </script>
+</div>
 </body>
 </html>
