@@ -6,7 +6,7 @@
 Welcome to Interface Web Machine's documentation!
 =================================================
 
-Ce programme est une interface web pour contrôller des machine
+Ce programme est une interface web pour contrôler des machines.
 
 .. toctree::
    :maxdepth: 2
