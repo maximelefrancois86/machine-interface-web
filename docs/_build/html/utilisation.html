@@ -18,7 +18,8 @@
         <script src="_static/translations.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Recherche" href="search.html" /> 
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Welcome to Interface Web Machine’s documentation!" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -37,8 +38,11 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Contenu:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="utilisation.html">Usage</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#i-utiliser-l-application">I. Utiliser l’application</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -57,7 +61,7 @@
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Usage</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/usage.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+            <a href="_sources/utilisation.rst.txt" rel="nofollow"> Afficher la source de la page</a>
       </li>
   </ul>
   <hr/>
@@ -77,25 +81,23 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">[</span><span class="n">host</span><span class="p">]:[</span><span class="n">port</span><span class="p">]</span><span class="o">/</span><span class="n">home</span>
 </pre></div>
 </div>
-<section id="ou">
-<h3>ou<a class="headerlink" href="#ou" title="Lien permanent vers ce titre"></a></h3>
-<blockquote>
-<div><p><a class="reference external" href="http://[host]:[port">http://[host]:[port</a>]</p>
-</div></blockquote>
+<p>ou</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">[</span><span class="n">host</span><span class="p">]:[</span><span class="n">port</span><span class="p">]</span>
+</pre></div>
+</div>
 <p>par défault : <a class="reference external" href="http://localhost:8080">http://localhost:8080</a></p>
 <p>Pour intérragir avec l’API :</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="p">[</span><span class="n">host</span><span class="p">]:[</span><span class="n">port</span><span class="p">]</span><span class="o">/</span><span class="n">swagger</span><span class="o">-</span><span class="n">ui</span><span class="o">/</span><span class="n">index</span><span class="o">.</span><span class="n">html</span>
 </pre></div>
 </div>
-<p>Pour ajouter une machine VL10 : le fichier Json doit avoir cette forme :
-.. code-block:: json</p>
-<blockquote>
-<div><p>{
-« name »: « nom de la machine »,
-« machineMode »: « MANUAL »,
-« statusId »: 3
-}</p>
-</div></blockquote>
+<p>Pour ajouter une machine VL10 : le fichier Json doit avoir cette forme :</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;nom de la machine&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;machineMode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;MANUAL&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="nt">&quot;statusId&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
 <p>Sans id, car celui-ci se génère automatiquement et avec un statusId entre 1 et 12
 Pour accèder à la base de donnée :</p>
 <blockquote>
@@ -104,12 +106,13 @@ Pour accèder à la base de donnée :</p>
 <p>avec l’identifiant sa et sans mot de passe. Celui-ci peut être modfier dans le fichier application.properties.</p>
 </section>
 </section>
-</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Interface Web Machine’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+    </div>
 
   <hr/>
 

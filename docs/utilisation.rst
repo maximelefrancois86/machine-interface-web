@@ -11,11 +11,13 @@ Pour démarrer le programme
 	./gradlew Bootrun
 
 Pour accèder à la page principale, entrer l'URL :
+
 ::
 
 	http://[host]:[port]/home
 
 ou
+
 ::
 
 	http://[host]:[port]
@@ -29,6 +31,7 @@ Pour intérragir avec l'API :
 	http://[host]:[port]/swagger-ui/index.html
 
 Pour ajouter une machine VL10 : le fichier Json doit avoir cette forme :
+
 .. code-block:: json
 
 	{

@@ -6,14 +6,15 @@
 Welcome to Interface Web Machine's documentation!
 =================================================
 
+Ce programme est une interface web pour contrôller des machine
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Contenu:
 
-   usage
+   utilisation
 
-
-Indices and tables
+Autre
 ==================
 
 * :ref:`genindex`
